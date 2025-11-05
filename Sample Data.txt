@@ -1,0 +1,79 @@
+Books:
+
+INSERT INTO BOOKS  (ID, TITLE, AUTHOR, CATEGORY, IS_AVAILABLE, TOTAL_COPIES, AVAILABLE_COPIES, DELETED) VALUES
+(RANDOM_UUID(), 'Sapiens', 'Yuval Noah Harari', 'History', true, 4, 4, false),
+(RANDOM_UUID(), '1984', 'George Orwell', 'Fiction', true, 6, 6, false),
+(RANDOM_UUID(), 'Introduction to Algorithms', 'Thomas H. Cormen', 'Tech', true, 2, 2, false),
+(RANDOM_UUID(), 'A Brief History of Time', 'Stephen Hawking', 'Science', true, 3, 3, false),
+(RANDOM_UUID(), 'Design Patterns', 'Gang of Four', 'Tech', true, 2, 2, false);
+
+
+Borrower:
+
+INSERT INTO borrowers (id, name, email, membership_type, max_borrow_limit) VALUES
+(RANDOM_UUID(), 'krishna', 'krishna@gmail.com', 'BASIC', 2),
+(RANDOM_UUID(), 'venkata', 'venkata@gmail.com', 'PREMIUM', 5),
+(RANDOM_UUID(), 'subbarao', 'subbarao@gmail.com', 'BASIC', 2),
+(RANDOM_UUID(), 'chaitanya', 'chaitanya@gmail.com', 'PREMIUM', 5);
+
+
+borrow_record:
+
+INSERT INTO borrow_records
+(id, book_id, borrower_id, borrow_date, due_date, return_date, fine_amount, active)
+VALUES
+
+-- Krishna borrows "Sapiens" (active loan)
+
+(RANDOM_UUID(),
+ (SELECT id FROM books WHERE title = 'Sapiens'),
+ 'b912c77e-93db-46ab-a4d7-a72895e9b026',
+ '2025-11-01',
+ '2025-11-15',
+ NULL,
+ 0.00,
+ true),
+
+-- Venkata borrows "1984" (returned on time)
+
+(RANDOM_UUID(),
+ (SELECT id FROM books WHERE title = '1984'),
+ 'e3ad3449-ead1-48bf-8f1e-c6271648e2ca',
+ '2025-10-10',
+ '2025-10-20',
+ '2025-10-19',
+ 0.00,
+ false),
+
+--  Subbarao borrows "Introduction to Algorithms" (still overdue)
+
+(RANDOM_UUID(),
+ (SELECT id FROM books WHERE title = 'Introduction to Algorithms'),
+ 'a17f6f93-fe8b-49c5-bdbd-9aaa929f596f',
+ '2025-10-05',
+ '2025-10-15',
+ NULL,
+ 10.00,
+ true),
+
+-- Chaitanya borrows "A Brief History of Time" (returned early)
+
+(RANDOM_UUID(),
+ (SELECT id FROM books WHERE title = 'A Brief History of Time'),
+ '6503c57b-f5ba-49df-92de-008858631e9a',
+ '2025-10-01',
+ '2025-10-14',
+ '2025-10-10',
+ 0.00,
+ false),
+
+-- Venkata borrows "Design Patterns" (currently borrowed)
+
+(RANDOM_UUID(),
+ (SELECT id FROM books WHERE title = 'Design Patterns'),
+ 'e3ad3449-ead1-48bf-8f1e-c6271648e2ca',
+ '2025-11-03',
+ '2025-11-17',
+ NULL,
+ 0.00,
+ true);

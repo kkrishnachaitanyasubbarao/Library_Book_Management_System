@@ -79,6 +79,4 @@ public class BookController {
         return ResponseEntity.ok(summary);
     }
 
-
-
 }

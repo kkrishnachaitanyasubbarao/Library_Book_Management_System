@@ -70,6 +70,11 @@ URLs:
 Swagger UI: http://localhost:8080/swagger-ui.html
 H2 Console: http://localhost:8080/h2-console
 
+Sample Data:
+-----------
+
+Added the Sample data in the project for testing purpose.
+
 
 Approach & Thought Process:
 ----------------------------
@@ -116,6 +121,8 @@ Approach & Thought Process:
     -> H2 In-Memory Database
     -> UUID - Unique ID's
     -> Relationships: @ManyToOne and @OneToMany
+
+
 
 
 Challenges:

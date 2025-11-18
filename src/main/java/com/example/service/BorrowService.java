@@ -70,8 +70,8 @@ public class BorrowService {
         BorrowRecord record = new BorrowRecord();
         record.setBook(book);
         record.setBorrower(borrower);
-        record.setBorrowDate(LocalDate.now());
-        record.setDueDate(LocalDate.now().plusDays(14));
+        record.setBorrowDate(LocalDate.now()); // Borrow date
+        record.setDueDate(LocalDate.now().plusDays(14)); // Borrow Date + 14
         record.setActive(true);
 
         // Update book availability
